@@ -50,7 +50,7 @@
 
 <% if show_field? 'created_on' %>
   <tr id="created_row" class="meta-info">
-    <td class="label"><label for="page_created_on">Created</label></td>
+    <td class="label"><label>Created</label></td>
     <td class="field">
       <%= f.datetime_select :created_on %>
     </td>
@@ -69,14 +69,14 @@
     </label>
   </div>
 <% end %>
-<%= image_tag 'comatose/spinner.gif', :id=>'spinner', :align=>'absmiddle', :style=>'display:none;' %>
+<%= image_tag 'comatose/spinner.gif', :id=>'spinner', :style=>'display:none;' %>
   <%= button_to_function('Preview', "ComatoseEditForm.preview_content('#{url_for :controller=>controller.controller_name, :action=>'preview', :id=>@page}')", :tabindex=>3, :id=>'preview-btn' ) if show_field? 'preview' %> &nbsp;
   <%= submit_tag ((mode == :edit) ? 'Save Changes' : 'Create Page'), :tabindex=>4 %>
   <% if @page.versions.length > 0 %>
   &nbsp; <%= link_to "Revert", :action=>'versions', :id=>@page %>
   <% end %>
   or
-  <a href="<%= url_for :controller=>controller.controller_name, :action=>'index' %>" onlick="ComatoseEditForm.cancel(this.href); return false;" tabindex="5">Cancel</a>
+  <a href="<%= url_for :controller=>controller.controller_name, :action=>'index' %>" onclick="ComatoseEditForm.cancel(this.href); return false;" tabindex="5">Cancel</a>
 </div>
 <% end %>
 

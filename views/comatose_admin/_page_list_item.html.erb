@@ -23,15 +23,15 @@ collapse_children = (level >= Comatose.config.default_tree_level)
 <li id="page_<%= page.id %>">
   <table cellpadding="0" cellspacing="0">
     <tr>
-      <td rowspan="2" valign="center">
+      <td rowspan="2" style="vertical-align: middle;">
       <% if !page.children.empty? %>
         <%=  image_tag( ((collapse_children) ? 'comatose/collapsed.gif' : 'comatose/expanded.gif'), :title=>'Expand/Collapse', :onclick=>"ComatoseList.toggle_tree_nodes(this,#{page.id});", :class=>'tree-controller', :size=>'12x12', :id=>"page_controller_#{page.id}" ) %>
       <% else %>
         <%= image_tag 'comatose/no-children.gif', :size=>'12x12', :class=>'tree-controller' %>
       <% end %>        
       </td>
-      <td rowspan="2" valign="center">
-        <%= image_tag 'comatose/page.gif', :size=>'25x31', :align=>"absmiddle" %>
+      <td rowspan="2" style="vertical-align: middle;">
+        <%= image_tag 'comatose/page.gif', :size=>'25x31', :style => "vertical-align: middle;" %>
         <span class="handle">DRAG</span>
       </td>
       <td>
@@ -46,11 +46,14 @@ collapse_children = (level >= Comatose.config.default_tree_level)
     </tr>
   </table>
 
-  <ul id="page_list_<%= page.id %>" old="lvl-<%= page.id %>" class="page-list <%= 'collapsed' if collapse_children %>" >
+<% if page.children.length > 0 %>
+  <ul id="page_list_<%= page.id %>" class="page-list <%= 'collapsed' if collapse_children %>" >
+  <!-- <ul id="page_list_<%= page.id %>" old="lvl-<%= page.id %>" class="page-list <%= 'collapsed' if collapse_children %>" > -->
     <% for child in page.children %>
-      <%= render :partial=>'page_list_item', :locals=>{ :page=>child, :level=>level+1 } %>
+      <%= render :partial => 'comatose_admin/page_list_item', :locals=>{ :page=>child, :level=>level+1 } %>
     <% end %>
   </ul>
+<% end %>
 
   <%= sortable_element( "page_list_#{page.id}", 
         :complete => visual_effect(:highlight, "page_list_#{page.id}"), 
