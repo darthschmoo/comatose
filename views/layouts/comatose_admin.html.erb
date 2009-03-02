@@ -1,6 +1,6 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html class="noscript" xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
   <head>
     <meta http-equiv="Content-Type"        content="text/html; charset=<%= Comatose.config.content_type %>"/>
     <meta http-equiv="Content-Style-Type"  content="text/css" />
@@ -392,7 +392,7 @@ BODY {
 .noscript #more-options,
 .noscript #preview-area,
 .noscript #preview-btn,
-.noscript .tree-controller {
+.noscript .tree-controller { 
   display: none;
 }
 .noscript .page-list.collapsed {
@@ -430,7 +430,7 @@ var css_browser_selector = function() {
       : is('gecko/') ? 'gecko' : is('opera') ? 'opera' : is('konqueror') ? 'konqueror' : is('applewebkit/') ? 'webkit safari' : is('mozilla/') ? 'gecko' : '',
     os = (is('x11') || is('linux')) ? ' linux' : is('mac') ? ' mac' : is('win') ? ' win' : '';
   var c = b+os+' js'; 
-  h.className = h.className.replace('noscript', '') + h.className?' '+c:c;
+  h.className = h.className?' '+c:c;
 }();
 
 // List View Functions
@@ -593,7 +593,7 @@ var ComatoseEditForm = {
     $('preview-area').show();
     var params = Form.serialize(document.forms[0]);
     if( params != this.last_preview ) {
-      $('preview-panel').innerHTML = "<span style='color:blue;'>Loading Preview...</span>";
+      $('preview-panel').innerHTML = "<span style='color:blue;'>Loading Preview...<\/span>";
       new Ajax.Updater(
          'preview-panel',
          preview_url,
@@ -817,10 +817,12 @@ if(!window.Cookie)
       destroyAll: Cookie.eraseAll
     });
   })();
+
+  Event.observe(window, 'load', function() {document.body.removeClassName("noscript");});
 /* ]]> */
 </script>
   </head>
-  <body>
+  <body class="noscript">
     <div id="page-container">
       <div id="header">
         <h1><%= link_to Comatose.config.admin_title, :controller=>controller.controller_name, :action=>'index' %></h1>
