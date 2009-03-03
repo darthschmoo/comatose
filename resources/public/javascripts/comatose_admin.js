@@ -12,7 +12,7 @@ var css_browser_selector = function() {
       : is('gecko/') ? 'gecko' : is('opera') ? 'opera' : is('konqueror') ? 'konqueror' : is('applewebkit/') ? 'webkit safari' : is('mozilla/') ? 'gecko' : '',
     os = (is('x11') || is('linux')) ? ' linux' : is('mac') ? ' mac' : is('win') ? ' win' : '';
   var c = b+os+' js'; 
-  h.className = h.className.replace('noscript', '') + h.className?' '+c:c;
+  h.className = h.className?' '+c:c;
 }();
 
 // List View Functions
@@ -399,3 +399,4 @@ if(!window.Cookie)
       destroyAll: Cookie.eraseAll
     });
   })();
+  Event.observe(window, 'load', function() {document.body.removeClassName("noscript");});
