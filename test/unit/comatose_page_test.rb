@@ -2,6 +2,7 @@ require File.dirname(__FILE__) + '/../test_helper'
 
 class ComatosePageTest < Test::Unit::TestCase
 
+  load_schema
   fixtures :comatose_pages
 
   should "create page" do
