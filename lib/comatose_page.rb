@@ -82,7 +82,7 @@ class ComatosePage < ActiveRecord::Base
     #version = options.delete(:version)
     text = self.body
     binding = Comatose::ProcessingContext.new(self, options)
-    filter_type = self.filter_type || '[No Filter]'
+    filter_type = self.filter_type || Comatose.config.default_filter
     TextFilters.transform(text, binding, filter_type, Comatose.config.default_processor)
   end
 

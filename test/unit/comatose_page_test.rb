@@ -88,8 +88,8 @@ class ComatosePageTest < Test::Unit::TestCase
   end
 
   should "render body text accurately" do
-    assert_equal "<h1>Home Page</h1>\n\n\n\t<p>This is your <strong>home page</strong>.</p>", root_page.to_html
-    assert_equal "<h1>Frequently Asked Questions</h1>\n\n\n\t<h2><a href=\"/faq/question-one\">Question One?</a></h2>\n\n\n<p>Content for <strong>question one</strong>.</p>\n\n\t<h2><a href=\"/faq/question-two\">Question Two?</a></h2>\n\n\n<p>Content for <strong>question two</strong>.</p>", faq_page.to_html
+    assert_equal "<h1>Home Page</h1>\n<p>This is your <strong>home page</strong>.</p>", root_page.to_html
+    assert_equal "<h1>Frequently Asked Questions</h1>\n<h2><a href=\"/faq/question-one\">Question One?</a></h2>\n<p>Content for <strong>question one</strong>.</p>\n<h2><a href=\"/faq/question-two\">Question Two?</a></h2>\n<p>Content for <strong>question two</strong>.</p>", faq_page.to_html
   end
  
   should "render data from parameterized calls too" do
