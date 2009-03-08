@@ -15,7 +15,7 @@ class <%= class_name %> < ActiveRecord::Migration
       t.string    "slug",        :limit => 255
       t.string    "keywords",    :limit => 255
       t.text      "body"
-      t.string    "filter_type", :limit => 25, :default => "Textile"
+      t.string    "filter_type", :limit => 25
       t.string    "author",      :limit => 255
       t.integer   "position",    :default => 0
       t.integer   "version"
