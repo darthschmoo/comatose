@@ -107,6 +107,12 @@ class ComatosePageTest < Test::Unit::TestCase
     assert_equal "<p>From Drop</p>", p.to_html
   end
 
+  should "render inline partial" do
+    # FIX test illustrates broken partial, sort of
+    page = create_page :body => "<%= render :comatose=>'question_one' %>"
+    assert_equal "Content for <em>question one</em>", page.to_html
+  end
+
   protected
 
     def new_page_slug(title)
