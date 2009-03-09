@@ -11,6 +11,18 @@ class Test::Unit::TestCase
 
   self.use_transactional_fixtures = true
   self.use_instantiated_fixtures  = false
+  
+  def setup
+    Comatose.configure do |config|
+      config.default_filter      = :textile
+      config.default_processor   = :liquid
+      config.authorization       = Proc.new { true }
+      config.admin_authorization = Proc.new { true }
+      config.admin_get_author    = Proc.new { request.env['REMOTE_ADDR'] }
+      config.admin_get_root_page = Proc.new { ComatosePage.root }
+    end
+    TextFilters.default_filter = "Textile"
+  end
 
   def create_page(options={})
     ComatosePage.create({ :title => 'Comatose Page', :author=>'test', :parent_id=>1 }.merge(options))
