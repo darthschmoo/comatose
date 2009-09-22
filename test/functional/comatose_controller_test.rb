@@ -40,5 +40,4 @@ class ComatoseControllerTest < Test::Unit::TestCase
     assert_response :success
     assert_tag :tag=>'title', :child=>/Question/
   end
-
 end

@@ -9,6 +9,14 @@ module Comatose
     end
   end
 
+  def self.create_root_page(options ={})
+    unless ComatosePage.root
+        page = ComatosePage.create({:title=>'root page', :body=>"Welcome to comatose", :author=>'System'}.merge(options), :parent_id=>nil)
+        page.save(false)
+    else
+      raise "There exists a comatose root page, cant create another one"
+    end
+  end
 end
 
 require 'acts_as_versioned'
