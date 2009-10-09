@@ -41,5 +41,7 @@ module Comatose
     else
       raise "There exists a comatose root page, cant create another one"
     end
+  rescue
+    true
   end
 end
