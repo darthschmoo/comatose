@@ -25,7 +25,7 @@ class ComatosePage < ActiveRecord::Base
 
   #before_create :create_full_path
   before_save :cache_full_path, :create_full_path
-  after_save :update_children_full_path
+  after_save :update_children_full_path, :after_save_hook
 
   # Using before_validation so we can default the slug from the title
   before_validation do |record|
@@ -106,6 +106,11 @@ class ComatosePage < ActiveRecord::Base
   end
   
 protected
+
+  def after_save_hook
+    instance_eval &Comatose.config.after_page_save
+  end
+
 
   # Creates a URI path based on the Page tree
   def create_full_path

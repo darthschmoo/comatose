@@ -39,6 +39,12 @@ class ComatoseAdminController < ActionController::Base
       @page = ComatosePage.new params[:page]
       @page.author = fetch_author_name
       if @page.save
+        begin
+          instance_eval &Comatose.config.controller_before_new
+        rescue Exception => e
+          p e
+        end
+
         flash[:notice] = "Created page '#{@page.title}'"
         redirect_to :controller=>self.controller_name, :action=>'index'
       end
@@ -59,8 +65,8 @@ class ComatoseAdminController < ActionController::Base
       if params.has_key? :cmd
         @target = ComatosePage.find params[:page]
         case params[:cmd]
-          when 'up' then @target.move_higher
-          when 'down' then @target.move_lower
+        when 'up' then @target.move_higher
+        when 'down' then @target.move_lower
         end
         redirect_to :action=>'reorder', :id=>@page
       end
@@ -160,7 +166,7 @@ class ComatoseAdminController < ActionController::Base
     redirect_to :controller=>self.controller_name, :action=>'index'
   end
 
-protected
+  protected
 
   def handle_authorization
     if Comatose.config.admin_authorization.is_a? Proc
