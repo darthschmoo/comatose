@@ -24,6 +24,12 @@ class ComatoseAdminController < ActionController::Base
       @page.updated_on = Time.now
       @page.author = fetch_author_name
       if @page.save
+        begin
+          instance_eval &Comatose.config.controller_before_update
+        rescue Exception => e
+          p e
+        end
+
         expire_cms_page @page
         expire_cms_fragment @page
         flash[:notice] = "Saved changes to '#{@page.title}'"
