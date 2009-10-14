@@ -42,8 +42,9 @@ module Comatose
     blockable_attr_accessor    :authorization
     blockable_attr_accessor    :admin_authorization
     blockable_attr_accessor    :after_page_save
-    blockable_attr_accessor    :controller_before_new
-    blockable_attr_accessor    :controller_before_update
+    blockable_attr_accessor    :controller_new_after_page_save
+    blockable_attr_accessor    :controller_edit_after_page_save
+    blockable_attr_accessor    :controller_edit_show
     blockable_attr_accessor    :admin_get_author
     blockable_attr_accessor    :admin_get_root_page
     blockable_attr_accessor    :after_setup

@@ -25,7 +25,7 @@ class ComatoseAdminController < ActionController::Base
       @page.author = fetch_author_name
       if @page.save
         begin
-          instance_eval &Comatose.config.controller_before_update
+          instance_eval &Comatose.config.controller_edit_after_page_save
         rescue Exception => e
           p e
         end
@@ -35,7 +35,14 @@ class ComatoseAdminController < ActionController::Base
         flash[:notice] = "Saved changes to '#{@page.title}'"
         redirect_to :controller=>self.controller_name, :action=>'index'
       end
+    else
+      begin
+        instance_eval &Comatose.config.controller_edit_show
+      rescue Exception => e
+        p e
+      end
     end
+
   end
 
   # Create a new page (posts back)
@@ -46,7 +53,7 @@ class ComatoseAdminController < ActionController::Base
       @page.author = fetch_author_name
       if @page.save
         begin
-          instance_eval &Comatose.config.controller_before_new
+          instance_eval &Comatose.config.controller_new_after_page_save
         rescue Exception => e
           p e
         end
