@@ -1,8 +1,3 @@
-class ComatosePage < ActiveRecord::Base
-  set_table_name 'comatose_pages'
-  acts_as_versioned :table_name=>'comatose_page_versions', :if_changed => [:title, :slug, :keywords, :body]
-end
-
 
 class <%= class_name %> < ActiveRecord::Migration
 
@@ -24,7 +19,7 @@ class <%= class_name %> < ActiveRecord::Migration
     end
     ComatosePage.create_versioned_table
     puts "Creating the default 'Home Page'..."
-    ComatosePage.create( :title=>'Home Page', :body=>"h1. Welcome\n\nYour content goes here...", :author=>'System' )
+    Comatose.create_root_page( :title=>'Home Page', :body=>"h1. Welcome\n\nYour content goes here...", :author=>'System' )
   end
 
   def self.down

@@ -35,13 +35,9 @@ end
 
 module Comatose
   def self.create_root_page(options ={})
-    unless ComatosePage.root
-        page = ComatosePage.create({:title=>'root page', :body=>"Welcome to comatose", :author=>'System', :parent_id=>nil}.merge(options))
-        page.save(false)
-    else
-      raise "There exists a comatose root page, cant create another one"
-    end
-  rescue
-    true
+    raise "Root page already exists" if ComatosePage.root
+    root = ComatosePage.create({:title=>'root page', :body=>"Welcome to comatose", :author=>'System', :parent_id=>nil}.merge(options))
+    root.save(false)
+    raise "Failed to save root page" if root.new_record?
   end
 end

@@ -21,6 +21,7 @@ class ComatosePage < ActiveRecord::Base
   define_option :active_mount_info, {:root=>'', :index=>''}
 
   acts_as_tree :order => "position, title"
+
   acts_as_list :scope => :parent_id
 
   #before_create :create_full_path
@@ -101,6 +102,7 @@ class ComatosePage < ActiveRecord::Base
   def record_timestamps
     false
   end
+
   def self.record_timestamps
     false
   end
@@ -110,7 +112,6 @@ protected
   def after_save_hook
     instance_eval &Comatose.config.after_page_save
   end
-
 
   # Creates a URI path based on the Page tree
   def create_full_path
