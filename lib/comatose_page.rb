@@ -24,7 +24,6 @@ class ComatosePage < ActiveRecord::Base
 
   acts_as_list :scope => :parent_id
 
-  #before_create :create_full_path
   before_save :cache_full_path, :create_full_path
   after_save :update_children_full_path, :after_save_hook
 
@@ -32,7 +31,9 @@ class ComatosePage < ActiveRecord::Base
   before_validation do |record|
     # Create slug from title
     if record.slug.blank? and !record.title.blank?
-      record.slug = record.title.downcase.lstrip.rstrip.gsub( /[^-a-z0-9~\s\.:;+=_]/, '').gsub(/[\s\.:;=_+]+/, '-').gsub(/[\-]{2,}/, '-').to_s
+      striped_title = record.title.downcase.lstrip.rstrip
+      slugize_foreign_leters(striped_title)
+      record.slug = striped_title.gsub( /[^-a-z0-9~\s\.:;+=_]/, '').gsub(/[\s\.:;=_+]+/, '-').gsub(/[\-]{2,}/, '-').to_s
     end
   end
   
@@ -72,11 +73,11 @@ class ComatosePage < ActiveRecord::Base
   # Check if a page has a selected keyword... NOT case sensitive. 
   # So the keyword McCray is the same as mccray
   def has_keyword?(keyword)
-     @key_list ||= (self.keywords || '').downcase.split(',').map {|k| k.strip }
-     @key_list.include? keyword.to_s.downcase
-   rescue
-     false
-   end
+    @key_list ||= (self.keywords || '').downcase.split(',').map {|k| k.strip }
+    @key_list.include? keyword.to_s.downcase
+  rescue
+    false
+  end
 
   # Returns the page's content, transformed and filtered...
   def to_html(options={})
@@ -87,16 +88,16 @@ class ComatosePage < ActiveRecord::Base
     TextFilters.transform(text, binding, filter_type, Comatose.config.default_processor)
   end
 
-# Static helpers...
+  # Static helpers...
   
   # Returns a Page with a matching path.
   def self.find_by_path( path )
-     path = path.split('.')[0] unless path.empty? # Will ignore file extension...
-     path = path[1..-1] if path.starts_with? "/"
-     find( :first, :conditions=>[ 'full_path = ?', path ] )
+    path = path.split('.')[0] unless path.empty? # Will ignore file extension...
+    path = path[1..-1] if path.starts_with? "/"
+    find( :first, :conditions=>[ 'full_path = ?', path ] )
   end
   
-# Overrides...
+  # Overrides...
 
   # I don't want the AR magic timestamping support for this class...
   def record_timestamps
@@ -107,25 +108,29 @@ class ComatosePage < ActiveRecord::Base
     false
   end
   
-protected
+  protected
+
+  def slugize_foreign_leters(title)
+    title.gsub("æ","ae").gsub("Æ","ae").gsub("å","a").gsub("Å","a").gsub("ø","o").gsub("Ø","o")
+  end
 
   def after_save_hook
     instance_eval &Comatose.config.after_page_save
   end
 
-  # Creates a URI path based on the Page tree
   def create_full_path
-     if parent_node = self.parent
-        # Build URI Path
-        path = "#{parent_node.full_path}/#{self.slug}"
-        # strip leading space, if there is one...
-        path = path[1..-1] if path.starts_with? "/"
-        self.full_path = path || ""
-     else
-        # I'm the root -- My path is blank
-        self.full_path = ""
-     end
+    if parent_node = self.parent
+      # Build URI Path
+      path = "#{parent_node.full_path}/#{self.slug}"
+      # strip leading space, if there is one...
+      path = path[1..-1] if path.starts_with? "/"
+      self.full_path = path || ""
+    else
+      # I'm the root -- My path is blank
+      self.full_path = ""
+    end
   end
+  
   def create_full_path!
     create_full_path
     save
