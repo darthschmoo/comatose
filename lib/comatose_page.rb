@@ -32,7 +32,7 @@ class ComatosePage < ActiveRecord::Base
     # Create slug from title
     if record.slug.blank? and !record.title.blank?
       striped_title = record.title.downcase.lstrip.rstrip
-      slugize_foreign_leters(striped_title)
+      ComatosePage.slugize_foreign_leters(striped_title)
       record.slug = striped_title.gsub( /[^-a-z0-9~\s\.:;+=_]/, '').gsub(/[\s\.:;=_+]+/, '-').gsub(/[\-]{2,}/, '-').to_s
     end
   end
@@ -107,13 +107,12 @@ class ComatosePage < ActiveRecord::Base
   def self.record_timestamps
     false
   end
-  
-  protected
 
-  def slugize_foreign_leters(title)
+  def self.slugize_foreign_leters(title)
     title.gsub("æ","ae").gsub("Æ","ae").gsub("å","a").gsub("Å","a").gsub("ø","o").gsub("Ø","o")
   end
 
+  protected
   def after_save_hook
     instance_eval &Comatose.config.after_page_save
   end
