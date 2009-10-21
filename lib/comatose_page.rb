@@ -32,7 +32,7 @@ class ComatosePage < ActiveRecord::Base
     # Create slug from title
     if record.slug.blank? and !record.title.blank?
       striped_title = record.title.downcase.lstrip.rstrip
-      ComatosePage.slugize_foreign_leters(striped_title)
+      striped_title = ComatosePage.slugize_foreign_leters(striped_title)
       record.slug = striped_title.gsub( /[^-a-z0-9~\s\.:;+=_]/, '').gsub(/[\s\.:;=_+]+/, '-').gsub(/[\-]{2,}/, '-').to_s
     end
   end
