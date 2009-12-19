@@ -54,11 +54,13 @@ For more information, see the [Getting Started][] guide.
     $ ./script/plugin install git://github.com/darthapo/comatose.git
     $ ./script/generate comatose_migration
     $ rake db:migrate
+    $ ruby ./vendor/plugins/comatose/install.rb
 
-Open your `routes.rb` and move the following comatose route to the 
+Open your `routes.rb` and move the following comatose routes to the 
 bottom:
 
     map.comatose_root ''
+    map.comatose_admin
 
 That's it, you're ready to go! You should be able to browse to 
 http://127.0.0.1:3000/**comatose_admin** and start adding pages to your CMS. 
