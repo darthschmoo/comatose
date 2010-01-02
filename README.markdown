@@ -32,8 +32,7 @@ For more information, see the [Getting Started][] guide.
 
 ### Development Notes
 
-*NOTE*: This is an active branch of Comatose that is built specifically for Rails 2.1.
-        I will *probably* remove any legacy support.
+*NOTE*: This is an active branch of Comatose that is built specifically for Rails 2.1. I will *probably* remove any legacy support.
 
  * Make comatose fully self-contained, which means removing `acts_as_(tree|list)`
  * Improve `ComatoseAdminController` to reduce number of DB calls for building the page tree
@@ -48,8 +47,7 @@ For more information, see the [Getting Started][] guide.
 
 ### Installation
 
-*Note*: See the 'Upgrading' section if you already have an older version of 
-        the comatose plugin installed.
+*Note*: See the 'Upgrading' section if you already have an older version of the comatose plugin installed.
 
     $ ./script/plugin install git://github.com/darthapo/comatose.git
     $ ./script/generate comatose_migration
@@ -70,8 +68,7 @@ routing doesn't match any of your controllers.
 
 ### Upgrading
 
-*NOTE*: This is an experimental 2.0 branch, so upgrading is possible at
-        the moment, but these instructions may not work for much longer.
+*NOTE*: This is an experimental 2.0 branch, so upgrading is possible at the moment, but these instructions may not work for much longer.
 
 If you are upgrading from an older version of Comatose (version 0.3, 
 0.4, 0.5, or 0.6), then you will need to re-install the comatose 
