@@ -11,6 +11,17 @@ module Comatose
 
 end
 
+begin
+  require 'active_record/acts/list'
+rescue MissingSourceFile => ex
+  require 'acts_as_list'
+end
+begin
+  require 'active_record/acts/tree'
+rescue MissingSourceFile => ex
+  require 'acts_as_tree'
+end
+
 require 'acts_as_versioned'
 require 'redcloth' unless defined?(RedCloth)
 require 'liquid' unless defined?(Liquid)
