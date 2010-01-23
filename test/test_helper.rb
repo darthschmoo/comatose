@@ -5,7 +5,7 @@ require File.expand_path(File.join(File.dirname(__FILE__), '../../../../config/e
 require 'test/unit'
 require 'test_help'
 
-class Test::Unit::TestCase
+class ActiveSupport::TestCase
 
   self.fixture_path = File.expand_path( File.join(File.dirname(__FILE__), 'fixtures') )
 

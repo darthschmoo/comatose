@@ -7,7 +7,8 @@ require 'text_filters'
 # require 'comatose/page'
 # require 'comatose/processing_context'
 
-class TextFiltersTest < Test::Unit::TestCase
+class TextFiltersTest < ActiveRecord::TestCase
+
   # fixtures :comatose_pages
   # self.use_instantiated_fixtures  = true
 

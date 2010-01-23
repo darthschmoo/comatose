@@ -8,7 +8,7 @@ class ComatoseAdminController
   def rescue_action(e) raise e end
 end
 
-class ComatoseAdminControllerTest < Test::Unit::TestCase
+class ComatoseAdminControllerTest < ActionController::TestCase
 
   fixtures :comatose_pages
     
@@ -74,7 +74,7 @@ class ComatoseAdminControllerTest < Test::Unit::TestCase
   should "update pages with valid data" do
     post :edit, :id=>1, :page=>{ :title=>'A new title' }
     assert_response :redirect
-    assert_redirected_to :action=>"index"
+    assert_redirected_to :controller=>"comatose_admin", :action=>"index"
   end
   
   should "not update pages with invalid data" do
@@ -86,7 +86,7 @@ class ComatoseAdminControllerTest < Test::Unit::TestCase
   should "delete a page" do
     post :delete, :id=>1
     assert_response :redirect
-    assert_redirected_to :action=>"index"
+    assert_redirected_to :controller=>"comatose_admin", :action=>"index"
   end
 
   should "reorder pages" do
@@ -95,7 +95,7 @@ class ComatoseAdminControllerTest < Test::Unit::TestCase
     assert_difference q1, :position do
       post :reorder, :id=>q1.parent.id, :page=>q1.id, :cmd=>'down'
       assert_response :redirect
-      assert_redirected_to :action=>"reorder"
+      assert_redirected_to :controller=>"comatose_admin", :action=>"reorder"
       q1.reload
     end
   end
