@@ -1,11 +1,18 @@
 ENV["RAILS_ENV"] = 'test'
 
-require File.expand_path(File.join(File.dirname(__FILE__), "/../../comatose_harness/config/environment.rb"))
+require File.expand_path(File.join(File.dirname(__FILE__), "../../../../config/environment.rb"))
 
-require 'test/unit'
+#
+# These are the required Gems for Comatose.
+# They are supplied here, because the test harness 
+# may not have them in the config file.
+#
+require 'acts_as_list'
+require 'acts_as_tree'
+
 require 'test_help'
 
-class Test::Unit::TestCase
+class ActiveSupport::TestCase
 
   self.fixture_path = File.expand_path( File.join(File.dirname(__FILE__), 'fixtures') )
 

@@ -146,6 +146,7 @@ task :test_harness do
     run_sh "cp -r #{ File.dirname(__FILE__) }/ #{ comatose_plugin_path }"
   end
   run_sh "ruby #{ comatose_plugin_path / 'install.rb' }"
+  
   run_sh "ruby #{ target / 'script' / 'generate' } comatose_migration"
   run_sh "ruby #{ comatose_plugin_path / 'bin' / 'comatose' } --plugin #{ target }"
   run_sh "cd #{ target } && rake db:migrate"
@@ -154,9 +155,6 @@ task :test_harness do
   run_sh "rm #{ target / 'public' / 'index.html' }"
   run_sh "cp #{ comatose_plugin_path / 'views' / 'layouts' / 'comatose_content.html.erb' } #{ target / 'app' / 'views' / 'layouts' / 'comatose_content.html.erb' }"
   
-  # Remove me soon!
-  run_sh "cd #{ target } && ruby #{ target / 'script' / 'plugin' } install acts_as_tree"
-  run_sh "cd #{ target } && ruby #{ target / 'script' / 'plugin' } install acts_as_list"
 
   puts "Done."
 end
