@@ -8,7 +8,7 @@ class ComatoseController
 end
 
 
-class ComatoseControllerTest < Test::Unit::TestCase
+class ComatoseControllerTest < ActionController::TestCase
 
   fixtures :comatose_pages
 

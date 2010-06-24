@@ -87,6 +87,9 @@ Comatose.configure do |config|
   #config.admin_title = "My Content"
   #config.admin_sub_title = "Content for the rest of us..."
 
+  #config.gem 'acts_as_list'
+  #config.gem 'acts_as_tree'
+
   # Includes AuthenticationSystem in the ComatoseAdminController
   #config.admin_includes << :authenticated_system
 
@@ -101,6 +104,7 @@ Comatose.configure do |config|
   #config.allow_import_export = true
   
   # See the getting started guide at http://comatose.rubyforge.org for more...
+  config.after_page_save = Proc.new {|| nil}
 end
 EOT
   end
