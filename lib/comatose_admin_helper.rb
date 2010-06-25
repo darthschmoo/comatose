@@ -20,7 +20,7 @@ module ComatoseAdminHelper
     hide_values = Array.new
     hide_values << hide if hide
     if node.id == selected
-      select_box = %Q|<option value="#{node.id}" selected="true">#{padding}#{node.title}</option>\n|
+      select_box = %Q|<option value="#{node.id}" selected="selected">#{padding}#{node.title}</option>\n|
     else
       if hide_values.include?(node.id)
         select_box = ''

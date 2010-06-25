@@ -15,12 +15,12 @@
   
 <h1>
   Page List
-  <%= image_tag 'comatose/spinner.gif', :id=>'spinner', :align=>'absmiddle', :style=>'display:none;' %>
+  <%= image_tag 'comatose/spinner.gif', :id=>'spinner', :style=>'display:none;' %>
 </h1>
 
 <ul class="page-list root">
 <% @root_pages.each do |page| %>
-  <%= render :partial=>'page_list_item', :locals=>{ :page=>page, :level=>1 } %>
+  <%= render :partial => 'comatose_admin/page_list_item', :locals=>{ :page=>page, :level=>1 } %>
 <% end %>
 </ul>
 

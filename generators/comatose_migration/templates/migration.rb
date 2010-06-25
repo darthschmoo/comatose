@@ -1,7 +1,4 @@
-<<<<<<< HEAD
 
-=======
->>>>>>> lenalena/master
 class <%= class_name %> < ActiveRecord::Migration
 
   # Schema for Comatose version 0.7+

@@ -75,8 +75,10 @@ BODY {
   position: fixed;
   right: 75px;
   border: 3px solid gray !important;
+/* mozilla/safari proprietary stuff
   -webkit-border-radius: 10px;
   -moz-border-radius: 10px;
+*/
   background: #FFF;
   padding: 15px;
 }
@@ -401,4 +403,9 @@ BODY {
 }
 .noscript #content .revisions #go-btn {
   display: inline;
+}
+
+
+#spinner {
+vertical-align: middle;
 }
