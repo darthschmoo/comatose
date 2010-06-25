@@ -87,9 +87,6 @@ Comatose.configure do |config|
   #config.admin_title = "My Content"
   #config.admin_sub_title = "Content for the rest of us..."
 
-  config.gem 'acts_as_list'
-  config.gem 'acts_as_tree'
-
   # Includes AuthenticationSystem in the ComatoseAdminController
   #config.admin_includes << :authenticated_system
 
