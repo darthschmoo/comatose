@@ -1,7 +1,6 @@
 ENV["RAILS_ENV"] = 'test'
-ENV['RAILS_ROOT'] ||= File.dirname(__FILE__) + '/../../../..' 
 
-require File.expand_path(File.join(ENV['RAILS_ROOT'], 'config/environment.rb'))
+require File.expand_path(File.join(File.dirname(__FILE__), '../../../../config/environment.rb'))
 
 require 'test_help'
 
@@ -54,4 +53,8 @@ class ActiveSupport::TestCase
       end
     end
   end
+<<<<<<< HEAD
 end
+=======
+end
+>>>>>>> 99530d9... Added test database file to test directory.
