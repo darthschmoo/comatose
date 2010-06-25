@@ -9,11 +9,20 @@ module Comatose
     end
   end
 
-  
 end
 
-require 'acts_as_list'
-require 'acts_as_tree'
+begin
+  require 'active_record/acts/list'
+rescue MissingSourceFile => ex
+  require 'acts_as_list'
+end
+begin
+  require 'active_record/acts/tree'
+rescue MissingSourceFile => ex
+  require 'acts_as_tree'
+end
+
+>>>>>>> test
 require 'acts_as_versioned'
 require 'redcloth' unless defined?(RedCloth)
 require 'liquid' unless defined?(Liquid)
