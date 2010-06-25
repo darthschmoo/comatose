@@ -1,4 +1,7 @@
+<<<<<<< HEAD
 
+=======
+>>>>>>> lenalena/master
 class <%= class_name %> < ActiveRecord::Migration
 
   # Schema for Comatose version 0.7+
@@ -19,7 +22,11 @@ class <%= class_name %> < ActiveRecord::Migration
     end
     ComatosePage.create_versioned_table
     puts "Creating the default 'Home Page'..."
-    Comatose.create_root_page( :title=>'Home Page', :body=>"h1. Welcome\n\nYour content goes here...", :author=>'System' )
+    ComatosePage.new( 
+      :title  =>'Home Page', 
+      :body   =>"h1. Welcome\n\nYour content goes here...", 
+      :author =>'System'
+    ).save(false)
   end
 
   def self.down
