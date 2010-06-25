@@ -1,7 +1,8 @@
-author: Matt McCray
+author: Polar Humenn
 summary: A micro CMS for embedding in Rails applications.
-homepage: http://comatose.rubyforge.org
-plugin: git://github.com/darthapo/comatose.git
+homepage: http://github.com/polar/comatose
+plugin: git://github.com/polar/comatose.git
+gem: git://github.com/polar/comatose.git
 license: MIT
-version: 2.0.5
-rails_version: 2+
+version: 2.0.5.1
+rails_version: 2.3

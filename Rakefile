@@ -54,12 +54,12 @@ Gem::Specification.new do |s|
   s.version = "#{ Comatose::VERSION }"
   s.date = "#{ Time.now.strftime('%Y-%m-%d') }" # 2008-05-20
   s.summary = "Micro CMS designed for being embedded into existing Rails applications"
-  s.email = "matt@elucidata.net"
+  s.email = "polar.humenn@gmail.com"
   s.rubyforge_project = 'comatose'
   s.homepage = "http://comatose.rubyforge.org"
   s.description = "Comatose is a micro CMS designed for being embedded into existing Rails applications."
   s.has_rdoc = true
-  s.authors = ["M@ McCray"]
+  s.authors = ["Polar Humenn, M@ McCray"]
   s.bindir = 'bin'
   s.executables = ['comatose']
   s.files = ["#{ manifest_files.join('", "') }"]
@@ -67,6 +67,8 @@ Gem::Specification.new do |s|
   s.rdoc_options = ["--main", "README.rdoc"]
   s.extra_rdoc_files = %w(README.rdoc CHANGELOG SPECS LICENSE)
   #s.add_dependency("mime-types", ["> 0.0.0"])
+  s.add_dependency("acts_as_list", ["> 0.0.0"])
+  s.add_dependency("acts_as_tree", ["> 0.0.0"])
 end
 EOGS
   
@@ -149,6 +151,7 @@ task :test_harness do
   
   run_sh "ruby #{ target / 'script' / 'generate' } comatose_migration"
   run_sh "ruby #{ comatose_plugin_path / 'bin' / 'comatose' } --plugin #{ target }"
+  run_sh "cp #{ comatose_plugin_path / 'test_harness_environment.rb' } #{ target / 'config' / 'environment.rb' }"
   run_sh "cd #{ target } && rake db:migrate"
 
   run_sh "cp #{ target / 'db' / 'development.sqlite3' } #{target / 'db' / 'test.sqlite3'}"

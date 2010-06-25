@@ -1,3 +1,8 @@
+- version: 2.0.5.1 (polar beta)
+    - Upgraded for Rails 2.3.4
+    - From Test::Unit to ActiveSupport::TestCase, ActionController:TestCase
+    - Removed lib/redcloth.rb
+    - acs_as_list and acts_as_tree are required as gems.
 - version: 2.0.5 (beta)
     - Added configuration option for importing/exporting pages from admin: `config.allow_import_export = true|false`, `true` is the default at the moment
     - Reworked the UI for import/export a little bit
