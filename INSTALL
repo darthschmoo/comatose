@@ -9,7 +9,7 @@ From here you'll want to run:
 
   $ ./script/generate comatose_migration
   
-NOTE: The generator will add the default comatose routes to the top of your routes.rb file. You'll want to move `map.comatose_root ''` to the bottom of your routes block.
+NOTE: The generator will add the default comatose routes to the top of your routes.rb file. You'll want to move `map.comatose_root ''` and `map.comatose_admin` to the bottom of your routes block.
 
 When that's finished, run:
 

@@ -7,7 +7,6 @@ class ComatoseController
   def rescue_action(e) raise e end
 end
 
-
 class ComatoseControllerTest < ActionController::TestCase
 
   fixtures :comatose_pages
