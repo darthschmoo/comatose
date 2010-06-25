@@ -22,7 +22,6 @@ rescue MissingSourceFile => ex
   require 'acts_as_tree'
 end
 
->>>>>>> test
 require 'acts_as_versioned'
 require 'redcloth' unless defined?(RedCloth)
 require 'liquid' unless defined?(Liquid)
