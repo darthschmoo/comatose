@@ -101,7 +101,9 @@ class ComatoseAdminControllerTest < ActionController::TestCase
   end
   
   should "set runtime mode" do
-    assert_equal :plugin, ComatoseAdminController.runtime_mode
+    # The new script copies comatose_admin.js to the applicatoin and this sets 
+    # runtime_mode to :application. So, in the test_harness, it's always application.
+    #assert_equal :plugin, ComatoseAdminController.runtime_mode
     comatose_admin_view_path = File.expand_path(File.join( File.dirname(__FILE__), '..', '..', 'views'))
 
     if ComatoseAdminController.respond_to?(:template_root)

@@ -9,7 +9,6 @@ module Comatose
     end
   end
 
-  
 end
 
 begin
