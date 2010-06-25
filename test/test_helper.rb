@@ -53,8 +53,4 @@ class ActiveSupport::TestCase
       end
     end
   end
-<<<<<<< HEAD
 end
-=======
-end
->>>>>>> 99530d9... Added test database file to test directory.
